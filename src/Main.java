@@ -11,6 +11,6 @@ public class Main {
         list.stream().forEach(str -> str = "ttt");
         System.out.println(list.toString());
 
-        IntStream intStream = Stream.iterate(0, n -> n+2).limit(3);
+
     }
 }
