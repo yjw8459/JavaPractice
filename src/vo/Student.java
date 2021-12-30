@@ -1,9 +1,11 @@
 package vo;
 
 
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Student {
-    public enum SEX { MALE,FEMAIL }
+    public enum SEX { MALE, FEMAIL }
     public enum CITY { SEOUL, BUSAN }
 
     private String name;
@@ -12,18 +14,14 @@ public class Student {
 
     private SEX sex;
 
-    private String city;
+    private CITY city;
 
     public SEX getSex() {
         return sex;
     }
 
-    public String getCity() {
+    public CITY getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getName() {
@@ -46,5 +44,12 @@ public class Student {
         this.name = name;
         this.score = score;
         this.sex = sex;
+    }
+
+    public Student(String name, int score, SEX sex, CITY city) {
+        this.name = name;
+        this.score = score;
+        this.sex = sex;
+        this.city = city;
     }
 }
