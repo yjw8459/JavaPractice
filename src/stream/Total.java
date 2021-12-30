@@ -3,6 +3,7 @@ package stream;
 import vo.Student;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -58,9 +59,9 @@ public class Total {
 
     public void reduce(){
         List<Student> list = Arrays.asList(
-                new Student("홍길동", 92),
-                new Student("유종원", 95),
-                new Student("자바김", 88)
+                new Student("홍길동", 92, Student.SEX.MALE),
+                new Student("유종원", 95, Student.SEX.MALE),
+                new Student("자바김", 88, Student.SEX.MALE)
         );
         int sum1 = list.stream().mapToInt(Student::getScore).sum();
 
@@ -69,6 +70,23 @@ public class Total {
 //        Integer reduce = list.stream().map(Student::getScore).reduce(0, (a, b) -> a + b);         디폴트 있음
 //        Optional<Integer> reduce = list.stream().map(Student::getScore).reduce((a, b) -> a + b);  디폴트 없음
         int sum3 = list.stream().map(Student::getScore).reduce(0, (a, b) -> a + b); //디폴트 없을 경우 .get() X
+
+    }
+
+    public void collect(){
+        List<Student> list = Arrays.asList(
+                new Student("홍길동", 92, Student.SEX.MALE),
+                new Student("유종원", 95, Student.SEX.MALE),
+                new Student("자바김", 88, Student.SEX.FEMAIL),
+                new Student("박수미", 70, Student.SEX.FEMAIL)
+        );
+
+        //둘의 차이점 Collectors(수집가)의 정의가 다름
+        List<Student> maleList = list.stream().filter(s ->  s.getSex() == Student.SEX.MALE)
+                .collect(Collectors.toList());
+
+        Set<Student> femaleList = list.stream().filter( s -> s.getSex() == Student.SEX.FEMAIL )
+                .collect(Collectors.toCollection(HashSet::new));
 
 
 
