@@ -1,8 +1,11 @@
 package stream;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import vo.Dummy;
 import vo.Student;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,6 +13,57 @@ import java.util.stream.IntStream;
  * 집계
  */
 public class Total {
+
+    public static void main(String[] args) {
+        map();
+    }
+
+    static class Cat{
+        String name;
+        int age;
+        Cat(String name, int age){
+            this.name = name;
+            this.age = age;
+        }
+        public int getAge(){
+            return age;
+        }
+    }
+
+    public static void map(){
+        List<Cat> cats = Arrays.asList(
+                new Cat("coco", 3),
+                new Cat("choco", 2)
+        );
+        cats.stream().mapToInt(Cat::getAge).forEach(System.out::println);
+    }
+
+    public static void filter(){
+        Arrays.asList(new String[]{"test", "velog", "Hello", "velog"}).stream().filter(s -> "velog".equals(s)).forEach(System.out::println);
+        System.out.println("================================================");
+        Arrays.asList(new String[]{"test", "velog", "Hello", "velog"}).stream().distinct().forEach(System.out::println);
+    }
+
+
+    public static void pipelines(){
+
+        Double scoreAvg = Dummy.getStudentList().stream().filter(s -> s.getSex() == Student.SEX.MALE)
+                .mapToInt(Student::getScore).average().getAsDouble();
+
+    }
+
+    public static void forEachTest(){
+
+        Arrays.asList(new String[]{"test", "velog", "Hello", "velog"}).forEach(System.out::println);
+
+        Arrays.asList(new String[]{"test", "velog", "Hello", "velog"}).forEach(s -> {
+            //멀티라인 일 경우
+            System.out.println(s);
+            System.out.println(s.length());
+        });
+
+    }
+
 
     /**
      * 집계 함수
