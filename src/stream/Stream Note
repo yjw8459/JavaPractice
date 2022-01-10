@@ -1,0 +1,31 @@
+Java Collectors
+
+
+Stream의 마지막 단계에서 사용된다.
+
+Stream.collect()
+데이터의 중간 처리 후 마지막에 원하는 형태로 변환해주는 역할
+collector는 아래와 같은 기능을 제공한다.
+
+- stream 요소들을 List, Set, Map 자료형으로 변환
+- stream 요소들의 결합(joining)
+- stream 요소들의 통계(최대, 최소, 평균값 등)
+- stream 요소들의 그룹화와 분할
+
+변환, 결합, 통계, 분할
+
+
+Collectors.toList();
+
+모든 Stream의 요소를 List 인스턴스로 수집하는데 사용할 수 있다.
+해당 메서드는 특정한 List를 구현하는 것이 아니며 이것을 좀 더 잘 제어하려면,
+toCollection를 대신 사용할 수 있다.
+
+
+Collectors.toCollection()
+toList, toSet은 특정 List, Set의 구현을 지정할 수 없다(ex. HashSet, TreeSet).
+특정 Collection을 구현하려면 Collectors.toCollection 사용
+* 변경 불가능한 컬렉션에는 작동하지 않음.
+이 경우 사용자 정의 수집기를 구현하거나, collectAndThen을 사용
+
+
