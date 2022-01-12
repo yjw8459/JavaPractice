@@ -51,12 +51,21 @@ import static java.util.stream.Collectors.*;
 public class CollectorsStudy {
 
     public static void collectorsTest(){
+
+        //List
         List<String> list = Dummy.getStudentList().stream().map(Student::getName).collect(toList());
-        list.forEach(System.out::println);  //배열
+
+        //Set›
         Set<String> set = Dummy.getStudentList().stream().map(Student::getName).collect(toSet());
+
+        list.forEach(System.out::println);  //배열›
         set.forEach(System.out::println);   //집합
         //구체적인 Collection 선언
+
+        //toCollection의 매개 인자 ArrayList를 LinkedList... 등으로 바꿀 수 있다.
         List<Student> lists = Dummy.getStudentList().stream().collect(toCollection(ArrayList::new));
+
+        //toCollection의 매개 인자 HashSet을 TreeSet... 등으로 바꿀 수 있다.
         Set<Student> sets = Dummy.getStudentList().stream().collect(toCollection(HashSet::new));
 
         /**
@@ -66,7 +75,9 @@ public class CollectorsStudy {
          * 중복 키가 있으면 IllegalStateException 발생
          *
          */
-        Map<String, Integer> result = list.stream().collect(toMap(Function.identity(), String::length));
+
+        Map<String, Integer> result = Arrays.asList("velog", "java", "spring").stream()
+                .collect(toMap(Function.identity(), String::length));
 
         /**
          * 충돌이 있을 경우를 생각하여 중복 시 item으로 사용할 것을 선언(두 충돌 값 중 하나만 선택할 것.)

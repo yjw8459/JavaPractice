@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 public class Total {
 
     public static void main(String[] args) {
-        optional();
+        reduce();
     }
 
     static class Cat{
@@ -116,7 +116,7 @@ public class Total {
 
     }
 
-    public void reduce(){
+    public static void reduce(){
         List<Student> list = Arrays.asList(
                 new Student("홍길동", 92, Student.SEX.MALE),
                 new Student("유종원", 95, Student.SEX.MALE),
@@ -129,6 +129,15 @@ public class Total {
 //        Integer reduce = list.stream().map(Student::getScore).reduce(0, (a, b) -> a + b);         디폴트 있음
 //        Optional<Integer> reduce = list.stream().map(Student::getScore).reduce((a, b) -> a + b);  디폴트 없음
         int sum3 = list.stream().map(Student::getScore).reduce(0, (a, b) -> a + b); //디폴트 없을 경우 .get() X
+
+
+
+    }
+
+    public static void test(){
+
+        int sum1 = Arrays.asList(1, 2, 3).stream().reduce((a, b) -> a + b).get();
+        int sum2 = Arrays.asList(1, 2, 3).stream().reduce(0, (a, b) -> a + b);
 
     }
 
