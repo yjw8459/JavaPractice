@@ -12,6 +12,30 @@ import java.util.stream.Collectors;
 
 public class GroupingBy {
 
+    public static void main(String[] args) {
+        groupingByTest();
+    }
+
+    public static void groupingByTest(){
+
+        //풀어쓰기
+        List<Student> totalList = Dummy.getStudentList();
+        Function<Student, String> name = Student::getName;  //Function 생성
+        Function<Student, Student.SEX> sex = Student::getSex;
+
+        Collector<Student, ?, List<String>> studentNameList = Collectors.mapping(name, Collectors.toList());
+        Collector<Student, ?, Map<Student.SEX, List<String>>> collector = Collectors.groupingBy(sex, studentNameList);
+
+        totalList.stream().collect(collector).forEach((sex1, strings) -> System.out.println(sex1+" " + strings));
+
+        //줄여쓰기
+        totalList = Dummy.getStudentList();
+        totalList.stream().collect(Collectors.groupingBy(Student::getSex, Collectors.mapping(
+                Student::getName,
+                Collectors.toList()
+        )));
+    }
+
     public void groupingBySex(){
         List<Student> totalList = Dummy.getStudentList();
 
