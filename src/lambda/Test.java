@@ -1,10 +1,9 @@
-package test;
+package lambda;
 
-import java.awt.*;
+import lambda.CustomFunctionalInterface;
+
 import java.util.function.BiFunction;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class Test {
 

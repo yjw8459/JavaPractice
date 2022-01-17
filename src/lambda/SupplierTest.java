@@ -1,6 +1,4 @@
-package test;
-
-import com.sun.source.doctree.SerialDataTree;
+package lambda;
 
 import java.util.HashMap;
 import java.util.Map;

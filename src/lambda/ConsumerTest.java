@@ -1,4 +1,4 @@
-package test;
+package lambda;
 
 import java.util.function.*;
 
