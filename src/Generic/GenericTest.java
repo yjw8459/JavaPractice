@@ -2,6 +2,9 @@ package Generic;
 
 import lambda.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GenericTest {
 
     static class TestParent{
@@ -15,6 +18,13 @@ public class GenericTest {
         T getType(){ return type; }
         Test1(T type){
             this.type = type;
+        }
+    }
+
+    static class Test1Child <T> extends Test1<T>{
+
+        Test1Child(T type) {
+            super(type);
         }
     }
 
@@ -52,6 +62,14 @@ public class GenericTest {
 
         new Test3<String, Integer>("String", 1);
         Test4.print(test1);
+    }
+
+    public static void test2(){
+
+        List list = new ArrayList();
+        list.add("velog");
+        String str = (String) list.get(0);
+
     }
 
     public static void main(String[] args) {

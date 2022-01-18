@@ -21,6 +21,7 @@ public class GroupingBy {
         //풀어쓰기
         List<Student> totalList = Dummy.getStudentList();
         Function<Student, String> name = Student::getName;  //Function 생성
+
         Function<Student, Student.SEX> sex = Student::getSex;
 
         Collector<Student, ?, List<String>> studentNameList = Collectors.mapping(name, Collectors.toList());
