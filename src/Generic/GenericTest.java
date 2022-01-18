@@ -2,6 +2,7 @@ package Generic;
 
 import lambda.Test;
 
+import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,51 @@ public class GenericTest {
         list.add("velog");
         String str = (String) list.get(0);
 
+    }
+
+    static class MultiType <T, K> {
+        private T type;
+        private K key;
+        public T getType(){ return type; }
+        public K getKey(){ return key; }
+        public void setType( T type ){ this.type = type; }
+        public void setKey( K key ) { this.key = key; }
+    }
+
+    public static void multiType(){
+        MultiType<String, Integer> test1 = new MultiType<>();
+        test1.setType("velog");
+        test1.setKey(10000);
+        String type1 = test1.getType();
+        Integer key1 = test1.getKey();
+
+        MultiType<Object, Double> test2 = new MultiType<>();
+        test2.setType(new Object());
+        test2.setKey(1000.0);
+        Object type2 = test2.getType();
+        Double key2 = test2.getKey();
+    }
+
+    static class Box<T>{
+        private T box;
+        public T getBox(){ return box; }
+        public void setBox(T box){ this.box = box; }
+    }
+
+    static class GenericMethod{
+        public static <T> Box<T> boxing(T t){
+            Box<T> box = new Box<T>();
+            box.setBox(t);
+            return box;
+        }
+    }
+
+    public static <T> void genericMethod(T t){
+        Box<Integer> box1 = GenericMethod.<Integer>boxing(100);
+        int intValue = box1.getBox();
+
+        Box<String> box2 = GenericMethod.boxing("velog");
+        String strValue = box2.getBox();
     }
 
     public static void main(String[] args) {
