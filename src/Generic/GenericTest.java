@@ -9,7 +9,24 @@ import java.util.List;
 public class GenericTest {
 
     static class TestParent{
+        public static void printParent(){
+            System.out.println("Parent 출력");
+        }
+    }
 
+    static class Test extends TestParent{
+        public static void printChild(){
+            System.out.println("Child 출력");
+        }
+    }
+
+    public static <T extends TestParent> void genericTest(T t){
+        t.printParent();
+        //t.printChild();
+    }
+
+    public static void main(String[] args) {
+        genericMethod(new Test());
     }
 
     static class Test1 <T> extends TestParent {
@@ -118,8 +135,6 @@ public class GenericTest {
         String strValue = box2.getBox();
     }
 
-    public static void main(String[] args) {
-        test();
-    }
+
 
 }
