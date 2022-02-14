@@ -1,4 +1,4 @@
-package designpattern;
+package designpattern.templatemethod;
 
 public class Sub extends Super{
 
