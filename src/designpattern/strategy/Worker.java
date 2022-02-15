@@ -1,9 +1,12 @@
 package designpattern.strategy;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
-@Builder @Getter
+@Setter
+@Getter
+@AllArgsConstructor
 public class Worker {
 
     private String name;
