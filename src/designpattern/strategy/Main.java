@@ -8,12 +8,21 @@ public class Main {
         Calculator managerCalculator = new Calculator(new ManagerStrategy());
         Calculator directorCalculator = new Calculator(new DirectorStrategy());
 
-        Worker staff = new Worker("staff", 3000);
-        Worker manager = new Worker("manager", 4500);
-        Worker director = new Worker("director", 6000);
+        Worker staff = new Worker.WorkerBuilder()
+                .name("staff")
+                .salary(staffCalculator.calculate(3000))
+                .build();
+        Worker manager = new Worker.WorkerBuilder()
+                .name("manager")
+                .salary(managerCalculator.calculate(4500))
+                .build();
+        Worker director = new Worker.WorkerBuilder()
+                .name("director")
+                .salary(directorCalculator.calculate(6000))
+                .build();
 
-        staff.setSalary(staffCalculator.calculate(staff.getSalary()));
-        manager.setSalary(managerCalculator.calculate(manager.getSalary()));
-        director.setSalary(directorCalculator.calculate(director.getSalary()));
+        System.out.println(staff.toString());
+        System.out.println(manager.toString());
+        System.out.println(director.toString());
     }
 }
